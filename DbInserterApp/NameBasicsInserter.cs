@@ -7,8 +7,14 @@
 
         }
 
-        public override void InsertDataIntoDatabase(List<string[]> dataChunk)
+        public NameBasicsInserter()
         {
+            
+        }
+
+        protected override void InsertDataIntoDatabase(List<string[]> dataChunk)
+        {
+            
             DataTable namesTable = new DataTable("NameBasics");
             namesTable.Columns.Add("Nconst", typeof(string));
             namesTable.Columns.Add("PrimaryName", typeof(string));

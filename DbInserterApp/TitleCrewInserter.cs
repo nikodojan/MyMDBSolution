@@ -7,7 +7,12 @@
             
         }
 
-        public override void InsertDataIntoDatabase(List<string[]> dataChunk)
+        public TitleCrewInserter()
+        {
+            
+        }
+
+        protected override void InsertDataIntoDatabase(List<string[]> dataChunk)
         {
             DataTable directorsTable = new DataTable("TitlesDirectors");
             directorsTable.Columns.Add("Tconst", typeof(string));

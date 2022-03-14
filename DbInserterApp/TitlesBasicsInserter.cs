@@ -44,7 +44,7 @@ namespace DbInserterApp
             _connection.Close();
         }
 
-        public override void InsertDataIntoDatabase(List<string[]> dataChunk)
+        protected override void InsertDataIntoDatabase(List<string[]> dataChunk)
         {
             Console.WriteLine("Preparing data...");
             DataTable titlesTable = new DataTable("TitleBasics");
