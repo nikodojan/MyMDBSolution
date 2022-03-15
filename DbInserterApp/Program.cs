@@ -4,13 +4,9 @@ using DbInserterApp;
 
 Console.WriteLine("Hello, World!");
 
-string insertConnection =
-    "Data Source=NIKOSNOTEBOOK;Initial Catalog=MyMDB;User ID=mymdbinserter;Password=password;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
 
-string adminConnection =
-    "Data Source=NIKOSNOTEBOOK; Initial Catalog = MyMDB; Integrated Security = True; Connect Timeout = 30; Encrypt = False; TrustServerCertificate = False; ApplicationIntent = ReadWrite; MultiSubnetFailover = False";
 
-SqlConnection connection = new SqlConnection(insertConnection);
+SqlConnection connection = new SqlConnection(ConnectionStrings.InsertConnection);
 
 //string titlesBasicsFile = @"D:\_4thSem\_DATABASES\Mandatory assignment\data\title.basics.tsv\data.tsv";
 //TitlesBasicsInserter titlesBasicsInserter = new TitlesBasicsInserter(connection, titlesBasicsFile);
