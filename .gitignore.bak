@@ -363,5 +363,5 @@ MigrationBackup/
 FodyWeavers.xsd
 
 # Connection strings with user data
-DbInserterApp/ConnectionStrings.cs
-MyMDB_WebApp/Secrets.cs
+ConnectionStrings.cs
+Secrets.cs
