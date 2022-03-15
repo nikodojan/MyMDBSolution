@@ -361,3 +361,7 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+# Connection strings with user data
+DbInserterApp/ConnectionStrings.cs
+MyMDB_WebApp/Secrets.cs
