@@ -17,6 +17,11 @@ namespace mymdbwebapp.Data
             modelBuilder.Entity<TitleBasicInfo>()
                 .ToView("v_titleBasicInfo")
                 .HasKey("Tconst");
+            modelBuilder.HasDbFunction(typeof(MyMdbContext).GetMethod(nameof(FindTitlesContainingWord),
+                new[] { typeof(string) })).HasName("findTitleWithWildcard");
         }
+
+        public IQueryable<TitleBasicInfo> FindTitlesContainingWord(string title)
+            => FromExpression(() => FindTitlesContainingWord(title));
     }
 }

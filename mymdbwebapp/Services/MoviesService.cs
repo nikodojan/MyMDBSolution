@@ -1,4 +1,5 @@
-﻿using mymdbwebapp.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using mymdbwebapp.Data;
 using mymdbwebapp.Models.ViewModels;
 
 namespace mymdbwebapp.Services
@@ -15,6 +16,12 @@ namespace mymdbwebapp.Services
         public List<TitleBasicInfo> GetMovies(int amount)
         {
             return _context.TitleBasicInfos.Take(amount).ToList();
+        }
+
+        public async Task<List<TitleBasicInfo>> SearchByTitle(string title)
+        {
+            var result = await _context.FindTitlesContainingWord(title).ToListAsync();
+            return result;
         }
     }
 }

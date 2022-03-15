@@ -1,14 +1,16 @@
 ﻿@inherits LayoutComponentBase
 
 <div class="container-fluid">
-
-    <div class="row">
-        <Header></Header>
+    
+    <div class="container-fluid shadow-sm">
+        <div class="row justify-content-center">
+            <Header></Header>
+        </div>
     </div>
 
-    <main class="row">
+    <main class="row justify-content-center">
 
-        <article class="content px-4">
+        <article class="content px-4" style="max-width: 1100px">
             @Body
         </article>
     </main>

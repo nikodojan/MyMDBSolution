@@ -1,0 +1,5 @@
+﻿.title-box:hover {
+    background-color: #eeeeee;
+    box-shadow: 0 2px 3px 1px #cecece;
+    cursor: pointer;
+}

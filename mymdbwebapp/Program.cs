@@ -14,6 +14,7 @@ builder.Services.AddSingleton<WeatherForecastService>();
 
 builder.Services.AddDbContext<MyMdbContext>(options =>
     options.UseSqlServer(Secrets.BasicConnectionString));
+
 builder.Services.AddTransient<MoviesService>();
 
 var app = builder.Build();
