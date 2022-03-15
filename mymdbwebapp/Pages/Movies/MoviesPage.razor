@@ -1,0 +1,23 @@
+﻿@page "/movies"
+@using mymdbwebapp.Services
+@using mymdbwebapp.Models.ViewModels
+
+@inject MoviesService MoviesService;
+
+<div>
+    <h1>Movies come here</h1>
+    @foreach (var m in TitleBasicInfos)
+    {
+        <div>@m.OriginalTitle</div>
+    }
+</div>
+
+@code {
+    public List<TitleBasicInfo> TitleBasicInfos { get; set; } = new();
+
+    protected override void OnParametersSet()
+    {
+        TitleBasicInfos = MoviesService.GetMovies(20);
+    }
+
+}

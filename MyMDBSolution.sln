@@ -5,7 +5,7 @@ VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DbInserterApp", "DbInserterApp\DbInserterApp.csproj", "{9EC8ECE2-9469-4045-8F6B-3AF3189865AE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMDB_WebApp", "MyMDB_WebApp\MyMDB_WebApp.csproj", "{C943626E-E44C-4507-9E92-0B6329A3F730}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mymdbwebapp", "mymdbwebapp\mymdbwebapp.csproj", "{1A5C59B9-E1BA-4961-B6FC-110138963C2C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{9EC8ECE2-9469-4045-8F6B-3AF3189865AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9EC8ECE2-9469-4045-8F6B-3AF3189865AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9EC8ECE2-9469-4045-8F6B-3AF3189865AE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C943626E-E44C-4507-9E92-0B6329A3F730}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C943626E-E44C-4507-9E92-0B6329A3F730}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C943626E-E44C-4507-9E92-0B6329A3F730}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C943626E-E44C-4507-9E92-0B6329A3F730}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A5C59B9-E1BA-4961-B6FC-110138963C2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A5C59B9-E1BA-4961-B6FC-110138963C2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A5C59B9-E1BA-4961-B6FC-110138963C2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A5C59B9-E1BA-4961-B6FC-110138963C2C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
