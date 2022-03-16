@@ -1,0 +1,62 @@
+﻿@page "/movies/{Tconst}"
+@inject MoviesService MoviesService;
+
+@if (IsLoading)
+{
+    <Loader></Loader>
+}
+else
+{
+    <div class="container m-0 p-0">
+        <h4 class="fw-bold">@Title.PrimaryTitle<br/>
+            <small class="text-muted h6">
+                @Title.StartYear
+                @if(Title.EndYear != null) { <span>&nbsp-&nbsp@Title.EndYear</span> }
+                <span>,</span>
+                @Title.Genres
+
+            </small>
+            </h4>
+            <hr/>
+            <div id="titleWritersAndDirectors" class="row crew-list">
+                <div class="col">
+                    <h5>Writers</h5>
+                    @foreach (var p in Crew.Where(p => p.Function == "Writer"))
+                    {
+                        <p>@p.Name</p>
+                    }
+                </div>
+                <div class="col">
+                    <h5>Directors</h5>
+                    @foreach (var p in Crew.Where(p => p.Function == "Director"))
+                    {
+                        <p>@p.Name</p>
+                    }
+                </div>
+            </div>
+            <hr/>
+    </div>
+}
+
+
+
+@code {
+
+    [Parameter]
+    public string Tconst { get; set; }
+
+    public TitleBasicInfo Title { get; set; }
+
+    public List<WriterOrDirector> Crew { get; set; }
+
+    public bool IsLoading { get; set; }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        IsLoading = true;
+        Title = await MoviesService.GetMovieByTconst(Tconst);
+        Crew = await MoviesService.GetWritersAndDirectors(Tconst);
+        IsLoading = false;
+    }
+
+}

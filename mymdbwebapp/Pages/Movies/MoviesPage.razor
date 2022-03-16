@@ -1,8 +1,7 @@
 ﻿@page "/movies"
-@using mymdbwebapp.Services
-@using mymdbwebapp.Models.ViewModels
 
 @inject MoviesService MoviesService;
+@inject NavigationManager NavManager;
 
 <div>
     <h4>Here you can find all titles ... movies, series, documentaries, etc.</h4>
@@ -32,7 +31,7 @@
         {
             @foreach (var m in TitleBasicInfos)
             {
-                <TitleBasicInfoComponent Title="m"></TitleBasicInfoComponent>
+                <TitleBasicInfoComponent Title="m" OnSelect="NavigateToSelectedTitle"></TitleBasicInfoComponent>
             }
         }
 
@@ -49,10 +48,6 @@
     private string SearchTitle { get; set; } = "";
 
     private bool IsLoading { get; set; } 
-    //protected override void OnParametersSet()
-    //{
-    //    TitleBasicInfos = MoviesService.GetMovies(20);
-    //}
 
     private async Task SearchMovie()
     {
@@ -76,6 +71,11 @@
     private async Task OnEnterKeyUp(KeyboardEventArgs e)
     {
         if (e.Code == "Enter" || e.Code == "NumpadEnter") await SearchMovie();
+    }
+
+    public void NavigateToSelectedTitle(string tconst)
+    {
+        NavManager.NavigateTo($"/movies/{tconst}");
     }
 
     

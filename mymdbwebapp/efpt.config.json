@@ -1,0 +1,91 @@
+﻿{
+   "CodeGenerationMode": 0,
+   "ContextClassName": "MymdbContext",
+   "ContextNamespace": null,
+   "DefaultDacpacSchema": null,
+   "FilterSchemas": false,
+   "IncludeConnectionString": true,
+   "ModelNamespace": null,
+   "OutputContextPath": "EfCoreModels",
+   "OutputPath": "EfCoreModels",
+   "ProjectRootNamespace": "mymdbwebapp",
+   "Schemas": null,
+   "SelectedHandlebarsLanguage": 0,
+   "SelectedToBeGenerated": 0,
+   "Tables": [
+      {
+         "Name": "[dbo].[AliasTypes]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Genres]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[NameBasics]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[NamesKnownForTitles]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[NamesProfessions]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[PrincipalsCharacters]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TitleAliases]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TitleAliasesTypes]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TitleBasics]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TitlePrincipals]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TitlesDirectors]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TitlesGenres]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TitlesWriters]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TitleTypes]",
+         "ObjectType": 0
+      }
+   ],
+   "UiHint": "NIKOSNOTEBOOK.MyMDB",
+   "UseBoolPropertiesWithoutDefaultSql": false,
+   "UseDatabaseNames": true,
+   "UseDbContextSplitting": false,
+   "UseFluentApiOnly": true,
+   "UseHandleBars": false,
+   "UseHierarchyId": false,
+   "UseInflector": true,
+   "UseLegacyPluralizer": false,
+   "UseManyToManyEntity": false,
+   "UseNoConstructor": false,
+   "UseNoDefaultConstructor": false,
+   "UseNoNavigations": false,
+   "UseNoObjectFilter": false,
+   "UseNodaTime": false,
+   "UseNullableReferences": false,
+   "UseSchemaFolders": false,
+   "UseSpatial": false
+}

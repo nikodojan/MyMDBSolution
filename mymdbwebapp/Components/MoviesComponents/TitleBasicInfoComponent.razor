@@ -1,5 +1,5 @@
 ﻿@using Microsoft.IdentityModel.Tokens
-<div class="col m-1 p-1 title-box">
+<div class="col m-1 p-1 title-box" @onclick="OnTitleClicked">
     <div class="row p-0">
         <h6 class="h6 m-0">@Title.OriginalTitle
             <small class="text-muted">
@@ -21,4 +21,13 @@
 @code {
     [Parameter]
     public TitleBasicInfo Title { get; set; }  
+
+    [Parameter]
+    public EventCallback<string> OnSelect { get; set; }
+
+    private void OnTitleClicked()
+    {
+        OnSelect.InvokeAsync(Title.Tconst);
+    }
+
 }
