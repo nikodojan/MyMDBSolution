@@ -1,7 +1,21 @@
 ﻿@page "/"
+@using Microsoft.IdentityModel.Protocols.OpenIdConnect
+@inject MoviesService MService;
 
 
 
 <h1>Hello, world!</h1>
 
 Welcome to your new app.
+
+<button type="button" class="btn btn-lg btn-primary" @onclick="OnButtonClick">Click me</button>
+
+@code
+{
+    private int Id { get; set; } = 0;
+
+    private async Task OnButtonClick()
+    {
+        await MService.InsertIntoTitles(++Id);
+    }
+}

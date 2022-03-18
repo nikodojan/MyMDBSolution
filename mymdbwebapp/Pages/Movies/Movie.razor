@@ -18,21 +18,23 @@ else
             </small>
             </h4>
             <hr/>
-            <div id="titleWritersAndDirectors" class="row crew-list">
-                <div class="col">
+            <div id="titleWritersAndDirectors" class="row crew-list px-2">
+                <div class="row mb-2">
                     <h5>Writers</h5>
                     @foreach (var p in Crew.Where(p => p.Function == "Writer"))
                     {
                         <p>@p.Name</p>
                     }
                 </div>
-                <div class="col">
+                <div class="row mb-2">
                     <h5>Directors</h5>
                     @foreach (var p in Crew.Where(p => p.Function == "Director"))
                     {
                         <p>@p.Name</p>
                     }
                 </div>
+
+                
             </div>
             <hr/>
     </div>

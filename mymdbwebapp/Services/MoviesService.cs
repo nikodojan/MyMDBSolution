@@ -28,7 +28,6 @@ namespace mymdbwebapp.Services
         public async Task<List<TitleBasicInfo>> SearchByTitle(string title)
         {
             var result = await _context.FindTitlesContainingWord(title).OrderBy(t=>t.PrimaryTitle).ToListAsync();
-            //var result = await _context.TitleBasicInfos.Where(t => t.PrimaryTitle == title).ToListAsync();
             return result;
         }
 
@@ -36,6 +35,15 @@ namespace mymdbwebapp.Services
         {
             var result = await _context.GetWritersAndDirectorsByTconst(tconst).ToListAsync();
             return result;
+        }
+
+
+        
+        public async Task InsertIntoTitles(int id)
+        {
+            string tconst = $"testConst{id}";
+            string title = "PTestTitle";
+            _context.Database.ExecuteSqlInterpolated($"EXEC InsertIntoTitleBasics @Tconst = {tconst}, @TitleType = 1, @PrimaryTitle = {title}, @OriginalTitle = 'OTestTitle', @IsAdult = 1, @StartYear = 2000, @EndYear = NULL, @Runtmie = 24");
         }
     }
 }

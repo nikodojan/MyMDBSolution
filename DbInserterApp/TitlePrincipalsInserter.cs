@@ -9,13 +9,15 @@ namespace DbInserterApp
 {
     public class TitlePrincipalsInserter : BulkInserterBase
     {
-        private static int _pID = 0;
-        private static int _cID = 0;
+        private int _pID = 0;
+        private int _cID = 0;
         
         private string _filePath = String.Empty;
 
         private int _linesRead = 0;
         private bool _firstRead = true;
+
+        private char[] _trimChars = new[] { '[', ']' };
 
         public TitlePrincipalsInserter(SqlConnection con, string filePath)
         {
@@ -27,13 +29,17 @@ namespace DbInserterApp
         public void BeginInserting(int batchSize)
         {
             _data = ReadPartialFromFile(_filePath);
-
+            Console.WriteLine($"Total rows in data file: {_data.Count}");
+            Stopwatch watch = new Stopwatch();
+            watch.Start();
             while (_data.Any())
             {
                 BulkInsertData(batchSize);
-
+                Console.WriteLine($"{watch.Elapsed.TotalSeconds} for {_linesRead} lines");
                 _data = ReadPartialFromFile(_filePath);
             }
+            watch.Stop();
+            Console.WriteLine($"Total time: {watch.Elapsed.TotalSeconds} seconds");
         }
 
         public List<string[]> ReadPartialFromFile(string filePath)
@@ -56,7 +62,7 @@ namespace DbInserterApp
 
         protected override void BulkInsertData(int batchSize)
         {
-            Console.WriteLine($"Total rows in data file: {_data.Count}");
+            
             int count = 0;
             _connection.Open();
             Stopwatch watch = new Stopwatch();
@@ -69,14 +75,12 @@ namespace DbInserterApp
                 Console.Write($"\rRows inserted: {count} \t\t\t{watch.Elapsed.TotalSeconds} seconds");
 
             }
-            watch.Stop();
-            Console.WriteLine($"Total time: {watch.Elapsed.TotalSeconds} seconds");
+            Console.WriteLine($"Iteration time: {watch.Elapsed.TotalSeconds} seconds");
             _connection.Close();
         }
 
         protected override void InsertDataIntoDatabase(List<string[]> dataChunk)
         {
-            Console.WriteLine("Creating tables");
             DataTable principalsTable = new DataTable("TitlePrincipals");
             principalsTable.Columns.Add("PrincipalId", typeof(int));
             principalsTable.Columns.Add("Tconst", typeof(string));
@@ -97,35 +101,39 @@ namespace DbInserterApp
                 pRow["Tconst"] = col[0];
                 pRow["Nconst"] = col[2];
                 pRow["Category"] = col[3];
-                pRow["Job"] = col[4];
+                pRow["Job"] = col[4] == "\\N" ? DBNull.Value : col[4];
                 principalsTable.Rows.Add(pRow);
 
                 if (col[5] != "\\N")
                 {
-                    string[] values = col[5].Split('"');
+                    
+                    string charactersString = col[5].Trim(_trimChars);
+                    string[] characters = charactersString.Split('"');
 
-                    foreach (var c in values)
+                    foreach (var c in characters)
                     {
-                        string trimmed = c.Trim();
-                        if (string.IsNullOrWhiteSpace(trimmed)) continue;
-                        var chars = trimmed.ToCharArray();
-                        if (!char.IsLetter(chars[0])) continue;
-                        int cID = ++_cID; 
+                        string character = c.Trim();
+                        if (string.IsNullOrWhiteSpace(character) || character.StartsWith(',')) continue;
+                        //var chars = trimmed.ToCharArray();
+                        //if (!char.IsLetter(chars[0])) continue;
+                        int cID = ++_cID;
                         DataRow charRow = charactersTable.NewRow();
                         charRow["CharId"] = cID;
                         charRow["PrincipalId"] = pID;
-                        charRow["Character"] = trimmed;
+                        charRow["Character"] = character;
                         charactersTable.Rows.Add(charRow);
                     }
                 }
             }
 
-            Console.WriteLine("Tables created");
-            Console.WriteLine("Start copy");
-
             SqlBulkCopy princCopy = new SqlBulkCopy(_connection, 
                 SqlBulkCopyOptions.KeepNulls & SqlBulkCopyOptions.KeepIdentity, null);
             princCopy.DestinationTableName = "TitlePrincipals";
+            princCopy.ColumnMappings.Add("PrincipalId", "PrincipalId");
+            princCopy.ColumnMappings.Add("Tconst", "Tconst");
+            princCopy.ColumnMappings.Add("Nconst", "Nconst");
+            princCopy.ColumnMappings.Add("Category", "Category");
+            princCopy.ColumnMappings.Add("Job", "Job");
             princCopy.WriteToServer(principalsTable);
 
             SqlBulkCopy charCopy = new SqlBulkCopy(_connection,

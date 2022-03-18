@@ -1,10 +1,11 @@
 ﻿.crew-list p {
     padding: 0;
-    margin: 0 0 0 12px;
+    margin: 0 0 0 24px;
     font-size: 1rem;
 }
 
 .crew-list h5 {
     font-size: 1rem !important;
     font-weight: 600;
+    margin: 4px 0;
 }
